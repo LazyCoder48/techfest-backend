@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techfest.interfaces.UserInterface;
 import com.techfest.model.User;
-import com.techfest.repository.UserRepository;
 
 @RestController
 public class UserController {
@@ -38,8 +38,9 @@ public class UserController {
 		return usersList;
 	}
 
-	@PostMapping("/saveUser")
-	public User saveNewUser(@PathVariable User user) {
+	@PostMapping(name="/saveUser", consumes="application/json")
+	public User saveNewUser(@RequestBody User user) {
+		user.toString();
 		User savedUser = userInterface.saveNewUser(user);
 		return savedUser;
 	}

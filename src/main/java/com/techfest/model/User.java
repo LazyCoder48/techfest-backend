@@ -1,17 +1,21 @@
 package com.techfest.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 @Entity
 @Table(name = "usersTable")
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "uniqueId_generator")
+	@SequenceGenerator(name="uniqueId_generator", sequenceName = "uniqueId_sequence")
+	@Column(name="id", updatable = false, nullable = false)
 	private Long Id;
 
 	private String firstName;
@@ -131,5 +135,15 @@ public class User {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
+	@Override
+	public String toString() {
+		return "User [Id=" + Id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", password=" + password + ", college=" + college + ", collegeUrl=" + collegeUrl + ", phoneNumber="
+				+ phoneNumber + ", encryptedPassword=" + encryptedPassword + ", dob=" + dob + ", passphrase="
+				+ passphrase + ", userName=" + userName + "]";
+	}
+	
+	
 
 }

@@ -16,6 +16,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
 	
 	public User findByUserName(String userName);
 	
+	@SuppressWarnings("unchecked")
 	public User save(User user);
 	
 }
