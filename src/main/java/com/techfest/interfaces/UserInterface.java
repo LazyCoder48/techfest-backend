@@ -12,5 +12,7 @@ public interface UserInterface {
 	
 	public User findByUserName(String userName);
 
-	public User saveNewUser(User user);
+	public User saveUser(User user);
+
+	public User updateUser(User user);
 }
